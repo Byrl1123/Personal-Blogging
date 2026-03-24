@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import * as dotenv from "dotenv";
 import { connectToDatabase } from "./config/database";
+import { articleRoutes } from "./routes/article.routes";
 
 
 dotenv.config();
@@ -16,6 +17,7 @@ server.get("/", async (req, res ) => {
     return { message: "Welcome to the Personal Blogging API" };
 });
 
+server.register(articleRoutes, {prefix: "/articles"});
 
 const start = async () => {
     try {
